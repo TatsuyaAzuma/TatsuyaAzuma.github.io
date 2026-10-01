@@ -2,9 +2,9 @@ export const site = {
   name: 'Your Name',
   handle: 'TatsuyaAzuma',
   title: 'tatsuyaazuma.github.io',
-  description: 'ソフトウェアエンジニアの個人サイト。作品・日記・経歴など。',
-  role: 'Software Engineer',
-  bio: 'Web とツールづくりが好きなエンジニアです。小さく作って、毎日すこしずつ育てています。',
+  description: '達也のホームページ',
+  role: '無職',
+  bio: 'こんちは',
 };
 
 export const nav = [
