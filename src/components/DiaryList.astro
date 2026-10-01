@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import TagList from './TagList.astro';
+import { formatDate } from '../lib/content';
+
+interface Props {
+  entries: CollectionEntry<'diary'>[];
+}
+
+const { entries } = Astro.props;
+---
+
+<ul class="diary-list">
+  {
+    entries.map((entry) => (
+      <li>
+        <time class="mono muted" datetime={entry.data.date.toISOString()}>
+          {formatDate(entry.data.date)}
+        </time>
+        <div>
+          <a href={`/diary/${entry.id}/`}>{entry.data.title}</a>
+          <TagList tags={entry.data.tags} />
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .diary-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 7.5em 1fr;
+    gap: 4px 16px;
+    align-items: baseline;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  time {
+    font-size: 0.85rem;
+  }
+
+  li div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+  }
+
+  a {
+    color: var(--text-strong);
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 480px) {
+    li {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

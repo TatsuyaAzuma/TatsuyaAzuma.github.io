@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#0d1219"/>
+  <rect x="60" y="50" width="520" height="260" rx="10" fill="#11161f" stroke="#1f2733"/>
+  <circle cx="86" cy="74" r="6" fill="#ff5f57"/><circle cx="106" cy="74" r="6" fill="#febc2e"/><circle cx="126" cy="74" r="6" fill="#28c840"/>
+  <g font-family="monospace" font-size="20">
+    <text x="90" y="130" fill="#3ddc84">$ task add "write blog"</text>
+    <text x="90" y="166" fill="#7d8590">✓ added #12</text>
+    <text x="90" y="210" fill="#3ddc84">$ task list</text>
+    <text x="90" y="246" fill="#c9d1d9">[ ] #12 write blog</text>
+  </g>
+</svg>

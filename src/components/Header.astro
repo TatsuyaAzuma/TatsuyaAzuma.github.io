@@ -1,0 +1,93 @@
+---
+import { nav, site } from '../data/site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="inner">
+    <a class="logo mono" href="/">
+      <span class="prompt">~/</span>{site.handle}
+    </a>
+    <nav aria-label="メイン">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                class:list={['mono', { active: isActive(item.href) }]}
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 12px var(--gutter);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+  }
+
+  .logo {
+    color: var(--text-strong);
+    font-weight: 700;
+  }
+
+  .logo:hover {
+    text-decoration: none;
+  }
+
+  .prompt {
+    color: var(--accent);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  nav a:hover {
+    color: var(--text-strong);
+    text-decoration: none;
+  }
+
+  nav a.active {
+    color: var(--accent);
+  }
+
+  nav a.active::before {
+    content: './';
+  }
+</style>

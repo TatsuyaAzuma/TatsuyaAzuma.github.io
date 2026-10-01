@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getWorks } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const works = await getWorks();
+  return works.map((work) => ({ params: { slug: work.id }, props: { work } }));
+}) satisfies GetStaticPaths;
+
+const { work } = Astro.props;
+const { Content } = await render(work);
+const { title, description, date, tech, thumbnail, url, repo } = work.data;
+---
+
+<PostLayout
+  title={title}
+  description={description}
+  date={date}
+  tags={tech}
+  back={{ href: '/works/', label: 'works' }}
+>
+  {
+    (url || repo) && (
+      <div slot="meta" class="links">
+        {url && (
+          <a class="btn" href={url} target="_blank" rel="noopener noreferrer">
+            demo ↗
+          </a>
+        )}
+        {repo && (
+          <a class="btn" href={repo} target="_blank" rel="noopener noreferrer">
+            source ↗
+          </a>
+        )}
+      </div>
+    )
+  }
+  {thumbnail && <img class="hero-img" src={thumbnail} alt="" />}
+  <Content />
+</PostLayout>
+
+<style>
+  .links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .hero-img {
+    display: block;
+    width: 100%;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+</style>

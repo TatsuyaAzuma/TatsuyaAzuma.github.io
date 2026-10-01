@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#0d1219"/>
+  <g fill="#11161f" stroke="#1f2733">
+    <rect x="40" y="40" width="270" height="130" rx="8"/>
+    <rect x="330" y="40" width="270" height="130" rx="8"/>
+    <rect x="40" y="190" width="560" height="130" rx="8"/>
+  </g>
+  <g font-family="monospace">
+    <text x="64" y="80" font-size="16" fill="#7d8590">TOKYO</text>
+    <text x="64" y="140" font-size="44" fill="#c9d1d9">23°C</text>
+    <text x="354" y="80" font-size="16" fill="#7d8590">HUMIDITY</text>
+    <text x="354" y="140" font-size="44" fill="#c9d1d9">61%</text>
+  </g>
+  <polyline points="70,290 150,260 230,275 310,230 390,245 470,215 570,225" fill="none" stroke="#3ddc84" stroke-width="3"/>
+</svg>

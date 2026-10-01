@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DiaryList from '../../components/DiaryList.astro';
+import { getDiary } from '../../lib/content';
+
+const entries = await getDiary();
+---
+
+<BaseLayout title="Diary" description="日々のことや技術メモ。">
+  <h1 class="page-title">diary</h1>
+  <p class="page-lead">日々のことや技術メモ。（{entries.length} 件）</p>
+  <DiaryList entries={entries} />
+</BaseLayout>

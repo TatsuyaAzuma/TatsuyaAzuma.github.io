@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+import { site } from '../data/site';
+import { career, skills } from '../data/career';
+---
+
+<BaseLayout title="About" description="経歴とスキル。">
+  <h1 class="page-title">about</h1>
+  <p class="page-lead">{site.bio}</p>
+
+  <section class="section">
+    <h2 class="section-title">career</h2>
+    <Timeline items={career} />
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">skills</h2>
+    <dl class="skills">
+      {
+        skills.map((s) => (
+          <div class="card">
+            <dt class="mono">{s.group}</dt>
+            <dd>{s.items.join(' / ')}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+    gap: 16px;
+    margin: 0;
+  }
+
+  .skills .card {
+    padding: 16px;
+  }
+
+  dt {
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+</style>

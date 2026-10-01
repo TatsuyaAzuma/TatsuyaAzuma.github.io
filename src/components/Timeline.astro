@@ -1,0 +1,77 @@
+---
+import type { CareerItem } from '../data/career';
+
+interface Props {
+  items: CareerItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="timeline">
+  {
+    items.map((item) => (
+      <li>
+        <span class="period mono">{item.period}</span>
+        <h3>{item.title}</h3>
+        <p class="org muted">{item.org}</p>
+        <p>{item.description}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    margin: 0;
+    padding: 0 0 0 24px;
+    list-style: none;
+    border-left: 1px solid var(--border);
+  }
+
+  li {
+    position: relative;
+    padding: 0 0 32px;
+  }
+
+  li:last-child {
+    padding-bottom: 0;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    background: var(--bg);
+  }
+
+  li:first-child::before {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  .period {
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    margin: 2px 0 0;
+    font-size: 1.05rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .org {
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+  }
+</style>

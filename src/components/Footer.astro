@@ -1,0 +1,58 @@
+---
+import { site } from '../data/site';
+import { socials } from '../data/socials';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="inner mono">
+    <span>© {year} {site.name}</span>
+    <ul>
+      {
+        socials.map((s) => (
+          <li>
+            <a href={s.href} target="_blank" rel="noopener noreferrer">
+              {s.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 24px var(--gutter);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  ul {
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: var(--muted);
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+</style>

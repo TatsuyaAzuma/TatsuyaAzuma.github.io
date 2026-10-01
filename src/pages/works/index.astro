@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkGrid from '../../components/WorkGrid.astro';
+import { getWorks } from '../../lib/content';
+
+const works = await getWorks();
+---
+
+<BaseLayout title="Works" description="これまでに作ったもの。">
+  <h1 class="page-title">works</h1>
+  <p class="page-lead">これまでに作ったもの。（{works.length} 件）</p>
+  <WorkGrid works={works} />
+</BaseLayout>

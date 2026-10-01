@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { email, socials } from '../data/socials';
+---
+
+<BaseLayout title="Contact" description="お問い合わせ・SNS。">
+  <h1 class="page-title">contact</h1>
+  <p class="page-lead">お仕事の相談や感想など、お気軽にどうぞ。</p>
+
+  <section class="section">
+    <h2 class="section-title">mail</h2>
+    <a class="btn" href={`mailto:${email}`}>{email}</a>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">sns</h2>
+    <ul class="socials">
+      {
+        socials.map((s) => (
+          <li>
+            <a class="card social" href={s.href} target="_blank" rel="noopener noreferrer">
+              <span class="label mono">{s.label}</span>
+              <span class="handle muted mono">{s.handle}</span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .socials {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 16px;
+    color: inherit;
+  }
+
+  .social:hover {
+    text-decoration: none;
+  }
+
+  .label {
+    color: var(--text-strong);
+    font-weight: 700;
+  }
+
+  .handle {
+    grid-column: 1;
+    font-size: 0.85rem;
+  }
+
+  .arrow {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    color: var(--accent);
+  }
+</style>

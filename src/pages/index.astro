@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkGrid from '../components/WorkGrid.astro';
+import DiaryList from '../components/DiaryList.astro';
+import { site } from '../data/site';
+import { getDiary, getWorks } from '../lib/content';
+
+const works = (await getWorks()).slice(0, 3);
+const diary = (await getDiary()).slice(0, 5);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <p class="whoami mono"><span class="accent">$</span> whoami</p>
+    <h1 class="mono">{site.name}<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="role mono">{site.role}</p>
+    <p class="bio">{site.bio}</p>
+    <div class="actions">
+      <a class="btn" href="/works/">view works →</a>
+      <a class="btn" href="/about/">about me</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">works</h2>
+      <a class="mono more" href="/works/">all →</a>
+    </div>
+    <WorkGrid works={works} />
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">diary</h2>
+      <a class="mono more" href="/diary/">all →</a>
+    </div>
+    <DiaryList entries={diary} />
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 48px 0 72px;
+  }
+
+  .whoami {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin: 8px 0 4px;
+    font-size: clamp(2.2rem, 9vw, 3.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .role {
+    margin: 0 0 20px;
+    color: var(--accent);
+  }
+
+  .bio {
+    max-width: 36em;
+    margin: 0 0 28px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .section {
+    margin-bottom: 64px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .more {
+    font-size: 0.85rem;
+  }
+</style>
