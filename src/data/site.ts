@@ -1,5 +1,5 @@
 export const site = {
-  name: 'Your Name',
+  name: '東 達也',
   handle: 'TatsuyaAzuma',
   title: 'tatsuyaazuma.github.io',
   description: '達也のホームページ',
